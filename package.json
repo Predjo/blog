@@ -21,8 +21,8 @@
     "hexo-server": "^0.2.0"
   },
   "scripts": {
-    "clear" : "hexo clear",
+    "clean" : "hexo clean",
     "serve" : "hexo server -d",
-    "deploy": "hexo clear && hexo generate && hexo deploy"
+    "deploy": "hexo clean && hexo generate && hexo deploy"
   }
 }
