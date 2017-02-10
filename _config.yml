@@ -68,7 +68,5 @@ theme: icarus
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type: git
-  repo: https://github.com/Predjo/blog.git
-  branch: master
-  message: "{{ now('YYYY-MM-DD HH:mm:ss') }}"
+  type: shell
+  command: scp -ri ~/.ssh/npCV.pem public/* ubuntu@54.72.113.220:/var/www/html/blog
