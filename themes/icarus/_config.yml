@@ -5,7 +5,7 @@ menu:
   Categories: categories
   Tags: tags
   About: about
-  CV: http://cv.predovan.com
+  CV: https://cv.predovan.com
 
 # Customize
 customize:
@@ -13,7 +13,7 @@ customize:
         enabled: true
         width: 55
         height: 40
-        url: http://nikola-predovan.from.hr/images/logo_small.png
+        url: https://cv.predovan.com/images/logo_small.png
     profile:
         enabled: true # Whether to show profile bar
         avatar: https://pbs.twimg.com/profile_images/826214472570257412/CtTadWFN.jpg
