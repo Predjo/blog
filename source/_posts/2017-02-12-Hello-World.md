@@ -1,9 +1,15 @@
-title: "Hello and welcome to my blog"
-layout: "page"
+---
+title: Hello World
+thumbnail: /images/banners/macbook1.jpg
 banner: /images/banners/macbook1.jpg
+tags: [Blog]
+categories: [General, Introduction]
 ---
 
-Hello there. I would like to take a minute to explain why I started this blog. 
+Hello world from my new blog.
+This is my first blog post ever and I would like to use it to explain why I started this blog.
+
+<!-- more -->
 
 I have been working as a developer last five years and learned a lot of interesting things in that time. But more importantly I also forgot a bunch of them. That includes lots of technical manuals, tutorials and interesting concepts. 
 
