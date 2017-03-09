@@ -28,7 +28,9 @@ So a full list of features is:
 4. Lap button that when pressed, records the current time in the lap time list. It is enabled only while the stopwatch is running.
 5. The lap time list containing all the lap times saved while the stopwatch was running.
 
-Since this tutorial is aimed at beginners I will not be doing unit test in it. They will be done in a separate post, probably after this one. Reason for it is to keep it short and focus only on React and not testing tools.
+Since this tutorial is aimed at React beginners I will not be doing unit test in it. They will be done in a separate post, probably after this one. Reason for it is to keep it short and focus only on React and not testing tools.
+
+The code from the tutorial is hosted on Github and you can find it [here](https://github.com/Predjo/tutorial-react-stopwatch-app). 
 
 ## Requirements
 
@@ -72,20 +74,22 @@ That is done like this so that inner workings of the module are hidden from the 
 Constants are used to store some constant values or configuration files. We will have one config file so we create it and name it `Config.js`.
 We only have one option and that is `updateInterval`. It determines how often is our our timer updated. So our `Config.js` file looks like:
 
+``javascrip
+// src/stopwatch/constants/Config.js
 
-{% codeblock src/stopwatch/constants/Config.js lang:javascript %}
 export default {
   updateInterval : 100 // Our timer will be updated every 100 miliseconds
 }
-{% endcodeblock %}
+```
 
 ### Utils
 
 Utils are used for helper functions. In our case we will have one helper function to format our time. Since time is stored in milliseconds we format it to `hh:mm:ss.S` to make it more readable to the user.
 So we create our `timeFormat.js` file that looks like:
 
+```javascript
+// src/stopwatch/utils/timeFormat.js
 
-{% codeblock src/stopwatch/utils/timeFormat.js lang:javascript %}
 // Add zero padding
 function zeroPad(number, size = 2) {
   let s = String(number);
@@ -108,7 +112,7 @@ export default function timeFormat(miliseconds) {
 
   return `${ zeroPad( hh ) }:${ zeroPad( mm ) }:${ zeroPad( ss ) }.${ S }`;
 }
-{% endcodeblock %}
+```
 
 ### Components
 
@@ -131,13 +135,13 @@ If you want to know more about it search for info about [Webpack](https://webpac
 One other important thing about the components are the [ProptTypes](https://facebook.github.io/react/docs/typechecking-with-proptypes.html). They bring simple type checking into your components that helps a lot during development. We will define all the prop types using the `static proptTypes = {}` notation at the top of our components. That makes it instantly clear what props are used by the components and what are their types. You can also mark which props are required using the `.isRequired` after the type.
 For example: 
 
-{% codeblock lang:JSX %}
+```javascript
   static proptTypes = {
     time      : PropTypes.number,
     isRunning : PropTypes.bool.isRequired,
     onHide    : PropTypes.func
   };
-{% endcodeblock %}
+```
 
 We can also define default values for some by using the `static defaultProps = {}`. And the best place for that is right after the defining the prop type.
 
@@ -147,7 +151,9 @@ So lets start building our components. We will start with the less complex ones 
 
 First we start with the timer. It is a simple component that takes one prop in form of time passed. And than converts that time from a number to a formated string with our `timeFormat` function. It looks like this:
 
-{% codeblock src/stopwatch/components/Timer.js lang:JSX %}
+```javascript
+// src/stopwatch/components/Timer.js
+
 import React, { PropTypes, Component } from 'react';
 import './Timer.css';
 
@@ -175,15 +181,17 @@ class Timer extends Component {
 }
 
 export default Timer;
-{% endcodeblock %}
+```
 
-{% codeblock src/stopwatch/components/Timer.css lang:CSS %}
+```css
+// src/stopwatch/components/Timer.css
+
 .Timer {
   text-align: center;
   font-size: 40px;
   padding: 20px;
 }
-{% endcodeblock %}
+```
 
 #### Controls
 
@@ -198,7 +206,9 @@ If the `isRunning` is true:
 If it is false than all of them are reversed.
 Other are function handles. We apply function handles to onClick even handlers of our buttons.
 
-{% codeblock src/stopwatch/components/Controls.js lang:JSX %}
+```javascript
+// src/stopwatch/components/Controls.js
+
 import React, { Component, PropTypes } from 'react';
 import './Controls.css';
 
@@ -252,9 +262,11 @@ class Controls extends Component {
 }
 
 export default Controls;
-{% endcodeblock %}
+```
 
-{% codeblock src/stopwatch/components/Controls.css lang:CSS %}
+```css
+// src/stopwatch/components/Controls.css
+
 .Controls {
   text-align: center;
 }
@@ -265,14 +277,16 @@ export default Controls;
   cursor: pointer;
   margin: 0px 2px;
 }
-{% endcodeblock %}
+```
 
 
 #### LapTime
 
 This is a simple component that shows the current lap and formated time in one row. It is used within LapTimeList. And takes `lap` and `time` numbers as props.
 
-{% codeblock src/stopwatch/components/LapTime.js lang:JSX %}
+```javascript
+// src/stopwatch/components/LapTime.js
+
 import React, { Component, PropTypes } from 'react';
 import './LapTime.css';
 
@@ -304,9 +318,11 @@ class LapTime extends Component {
 }
 
 export default LapTime;
-{% endcodeblock %}
+```
 
-{% codeblock src/stopwatch/components/LapTime.css lang:CSS %}
+```css
+// src/stopwatch/components/LapTime.css
+
 .LapTime {
   text-align: center;
 }
@@ -318,7 +334,7 @@ export default LapTime;
   display: inline-block;
   box-sizing: border-box;
 }
-{% endcodeblock %}
+```
 
 #### LapTimeList
 
@@ -328,7 +344,9 @@ Key is also an important prop here. It helps React to easily differentiate betwe
 It has to be unique. And since it is a simple array we can use the index from the map method as key.
 To learn more about lists and keys in React you can find more reading material [here](https://facebook.github.io/react/docs/lists-and-keys.html).
 
-{% codeblock src/stopwatch/components/LapTimeList.js lang:JSX %}
+```javascript
+// src/stopwatch/components/LapTimeList.js
+
 import React, { Component, PropTypes } from 'react';
 import './LapTimeList.css';
 
@@ -375,9 +393,11 @@ class LapTimeList extends Component {
 }
 
 export default LapTimeList;
-{% endcodeblock %}
+```
 
-{% codeblock src/stopwatch/components/LapTimeList.css lang:CSS %}
+```css
+// src/stopwatch/components/LapTimeList.css
+
 .LapTimeList__list {
   list-style: none;
   padding: 0px;
@@ -400,7 +420,7 @@ export default LapTimeList;
   display: inline-block;
   float: left;
 }
-{% endcodeblock %}
+```
 
 #### Stopwatch
 
@@ -426,7 +446,9 @@ In the render part we finally use our components and provide them with props fro
 Most of it is pretty straight forward, but one thing to note is passing of the methods as props. We pass them as [arrow functions](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions). For example `start = { () => this.start() }`.
 Reason for that is that React written with ES6 syntax does not auto bind `this` to methods. We could also use `start = { this.start.bind(this) }`.
 
-{% codeblock src/stopwatch/components/Stopwatch.js lang:JSX %}
+```javascript
+// src/stopwatch/components/Stopwatch.js
+
 import React, { Component } from 'react';
 import './Stopwatch.css';
 
@@ -514,28 +536,34 @@ class Stopwatch extends Component {
 }
 
 export default Stopwatch;
-{% endcodeblock %}
+```
 
-{% codeblock src/stopwatch/components/Stopwatch.css lang:CSS %}
+```css
+// src/stopwatch/components/Stopwatch.css
+
 .Stopwatch {
   text-align: center;
 }
-{% endcodeblock %}
+```
 
 #### index file
 
 And one last thing we need to complete our module is to create and `index.js` file. It will be the entry point for the module and contain all the exported components that we want to use in the other parts of the app.
 So here we export our Stopwatch component.
 
-{% codeblock src/stopwatch/components/Stopwatch.js lang:JSX %}
+```javascript
+// src/stopwatch/components/Stopwatch.js
+
 export { default as Stopwatch } from './components/Stopwatch';
-{% endcodeblock %}
+```
 
 ### Using the module in App
 
 Now that our Stopwatch module is finally done we can use it in our App component. We just import it and add it to the render method. I have also decided to leave the React logo for it to look a little nicer.
 
-{% codeblock src/stopwatch/components/Stopwatch.js lang:JSX %}
+```javascript
+// src/App.js
+
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
@@ -557,9 +585,11 @@ class App extends Component {
 }
 
 export default App;
-{% endcodeblock %}
+```
 
-{% codeblock src/stopwatch/components/Stopwatch.css lang:CSS %}
+```css
+// src/stopwatch/components/Stopwatch.css
+
 .App {
   text-align: center;
 }
@@ -589,7 +619,7 @@ export default App;
     transform: rotate(360deg);
   }
 }
-{% endcodeblock %}
+```
 
 ### Final result
 
@@ -606,7 +636,5 @@ And this is after we start it and save the lap time two times:
 ## Conclusion
 
 And that is it. Congratulations, you have successfully reach the end of this tutorial. I hope it has been useful to you and that you have learned something new.
-
-The code from the tutorial is hosted on Github and you can find it [here](https://github.com/Predjo/tutorial-react-stopwatch-app). 
 
 If you have any questions or remarks feel free to post them in the comments below.
