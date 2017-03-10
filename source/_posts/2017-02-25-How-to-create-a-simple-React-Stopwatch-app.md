@@ -74,12 +74,13 @@ That is done like this so that inner workings of the module are hidden from the 
 Constants are used to store some constant values or configuration files. We will have one config file so we create it and name it `Config.js`.
 We only have one option and that is `updateInterval`. It determines how often is our our timer updated. So our `Config.js` file looks like:
 
-``javascrip
+``javascript
 // src/stopwatch/constants/Config.js
 
 export default {
   updateInterval : 100 // Our timer will be updated every 100 miliseconds
 }
+
 ```
 
 ### Utils
@@ -112,6 +113,7 @@ export default function timeFormat(miliseconds) {
 
   return `${ zeroPad( hh ) }:${ zeroPad( mm ) }:${ zeroPad( ss ) }.${ S }`;
 }
+
 ```
 
 ### Components
