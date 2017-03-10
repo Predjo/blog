@@ -74,7 +74,7 @@ That is done like this so that inner workings of the module are hidden from the 
 Constants are used to store some constant values or configuration files. We will have one config file so we create it and name it `Config.js`.
 We only have one option and that is `updateInterval`. It determines how often is our our timer updated. So our `Config.js` file looks like:
 
-```javascript
+``javascript
 // src/stopwatch/constants/Config.js
 
 export default {
@@ -590,7 +590,7 @@ export default App;
 ```
 
 ```css
-// src/stopwatch/components/Stopwatch.css
+// src/App.css
 
 .App {
   text-align: center;
