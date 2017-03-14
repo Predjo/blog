@@ -482,7 +482,6 @@ class Stopwatch extends Component {
   }
 
   start() {
-
     this.setState({
       isRunning : true 
     }, () => {
