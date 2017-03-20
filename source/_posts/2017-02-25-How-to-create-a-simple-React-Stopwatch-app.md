@@ -218,10 +218,10 @@ class Controls extends Component {
 
   static proptTypes = {
     isRunning  : PropTypes.bool,
-    start      : PropTypes.func.isRquired,
-    stop       : PropTypes.func.isRquired,
-    reset      : PropTypes.func.isRquired,
-    addLapTime : PropTypes.func.isRquired 
+    start      : PropTypes.func.isRequired,
+    stop       : PropTypes.func.isRequired,
+    reset      : PropTypes.func.isRequired,
+    addLapTime : PropTypes.func.isRequired 
   };
 
   static defaultProps = {
